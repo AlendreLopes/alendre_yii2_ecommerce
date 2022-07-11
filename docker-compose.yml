@@ -4,6 +4,7 @@ services:
 
   frontend:
     build: frontend
+    container_name: ecommerce_frontend
     ports:
       - 20080:80
     volumes:
@@ -14,6 +15,7 @@ services:
 
   backend:
     build: backend
+    container_name: ecommerce_backend
     ports:
       - 21080:80
     volumes:
@@ -22,13 +24,13 @@ services:
       # Mount source-code for development
       - ./:/app
 
-  mysql:
-    image: mysql:5.7
-    environment:
-      - MYSQL_ROOT_PASSWORD=verysecret
-      - MYSQL_DATABASE=yii2advanced
-      - MYSQL_USER=yii2advanced
-      - MYSQL_PASSWORD=secret
+  # mysql:
+  #   image: mysql:5.7
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=verysecret
+  #     - MYSQL_DATABASE=yii2advanced
+  #     - MYSQL_USER=yii2advanced
+  #     - MYSQL_PASSWORD=secret
 
   #pgsql:
   #  image: postgres:9.5
@@ -36,3 +38,6 @@ services:
   #    - POSTGRES_DB=yii2advanced
   #    - POSTGRES_USER=yii2advanced
   #    - POSTGRES_PASSWORD=secret
+networks:
+  default:
+    name: alendre_mysql
